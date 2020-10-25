@@ -32,6 +32,17 @@ class ArticlesController
         return require_once __DIR__  . '/../Views/ArticlesIndexView.php';
     }
 
+    public function delete()
+    {
+        $articlesQuery = query()
+            ->delete('articles')
+            ->where('id = :id')
+            ->setParameter('id',$_POST['delete'])
+            ->execute();
+
+        header('location: /');
+    }
+
     public function show(array $vars)
     {
         $articleQuery = query()
@@ -51,4 +62,7 @@ class ArticlesController
 
         return require_once __DIR__  . '/../Views/ArticlesShowView.php';
     }
+
+
+
 }

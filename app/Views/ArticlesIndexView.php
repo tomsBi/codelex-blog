@@ -12,4 +12,9 @@
             <?php echo $article->createdAt(); ?>
         </small>
     </p>
+    <form action="/articles/<?php echo $article->id(); ?>/delete" method="post">
+        <p>
+            <button type="submit" value="<?php echo $article->id(); ?>" name="delete" >Delete</button>
+        </p>
+    </form>
 <?php endforeach; ?>
