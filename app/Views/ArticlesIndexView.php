@@ -12,9 +12,8 @@
             <?php echo $article->createdAt(); ?>
         </small>
     </p>
-    <form action="/articles/<?php echo $article->id(); ?>/delete" method="post">
-        <p>
-            <button type="submit" value="<?php echo $article->id(); ?>" name="delete" >Delete</button>
-        </p>
+    <form action="/articles/<?php echo $article->id(); ?>" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
     </form>
 <?php endforeach; ?>
