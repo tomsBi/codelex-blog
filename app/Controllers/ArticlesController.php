@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\Tag;
 
 class ArticlesController
 {
@@ -37,7 +38,7 @@ class ArticlesController
         query()
             ->delete('articles')
             ->where('id = :id')
-            ->setParameter('id', (int) $vars['id'])
+            ->setParameter('id', (int)$vars['id'])
             ->execute();
 
         header('location: /');
@@ -62,10 +63,9 @@ class ArticlesController
             ->execute()
             ->fetchAllAssociative();
 
-        $comments=[];
+        $comments = [];
 
-        foreach ($commentQuery as $comment)
-        {
+        foreach ($commentQuery as $comment) {
             $comments[] = new Comment(
                 $comment['id'],
                 $comment['article_id'],

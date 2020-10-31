@@ -18,6 +18,9 @@
         <b><?php echo $article->createdAt(); ?></b>
     </small>
 </p>
+<p>
+    <small><?php echo '#TAG'; ?></small>
+</p>
 <hr>
 <?php if (!empty($comments)) { ?>
     <ul>
@@ -25,6 +28,11 @@
             <li>
                 <b><?php echo $comment->name(); ?></b> <?php echo $comment->content(); ?><br>
                 <small><?php echo $comment->createdAt(); ?></small>
+                <form action="/articles/<?php echo $article->id(); ?>/comments/delete" method="post">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <input type="hidden" name="commentId" value="<?php echo $comment->id(); ?>"/>
+                    <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+                </form>
             </li>
         <?php } ?>
     </ul>
